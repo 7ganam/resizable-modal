@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import DraggableResizable from "./components/DraggableResizable";
+import DraggableResizable from "../components/DraggableResizable";
 import Link from "next/link";
 
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <main className="">
@@ -28,11 +28,6 @@ export default function Home() {
             >
               You can edit this text while the modal is open.
             </textarea>
-            <Link href="/show">
-              <button className="m-5 p-2 bg-blue-500 text-white rounded hover:bg-blue-700">
-                Open Automatic Show Page
-              </button>
-            </Link>
           </div>
         </div>
       </div>
@@ -63,17 +58,7 @@ export default function Home() {
                   Radix UI has many advantages which do not provide by other
                   libraries. You do not need to configure Radix UI with nextjs.
                   You can install the Radix component based on your project
-                  requirement. You can choose tailwind,
-                </div>
-              </div>
-              <div className="p-3">
-                <div className="p-3 flex w-[100%] justify-end">
-                  <button
-                    className="px-4 py-2  text-white rounded bg-red-400 hover:bg-red-700"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Close
-                  </button>
+                  requirement. You can choose tailwind.
                 </div>
               </div>
             </div>

@@ -31,3 +31,24 @@ body {
     text-wrap: balance;
   }
 }
+
+.react-resizable-handle {
+  position: absolute;
+  bottom: 10;
+  right: 10;
+  background: url("../../public/resize.png") !important;
+  background-position: bottom right;
+  padding: 0 3px 3px 0;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-sizing: border-box;
+  cursor: se-resize;
+}
+
+.react-resizable-handle-se {
+  width: 20px !important;
+  height: 20px !important;
+  bottom: 4px !important;
+  right: 4px !important;
+  background-size: 20px 20px !important;
+}

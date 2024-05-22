@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ResizableBox, ResizeCallbackData } from "react-resizable";
 import "react-resizable/css/styles.css";
 
@@ -32,7 +32,14 @@ const Resizable = ({
     data: ResizeCallbackData
   ) => {
     if (data.size.width > maxWidth) {
+      console.log({ maxWidth, width });
       setWidth(maxWidth - 1); //snap the width back so the modal doesn't overflow
+
+      setTimeout(() => {
+        // this is to work around a bug in react-resizable
+        setWidth(maxWidth);
+      }, 10);
+
       return;
     }
     setWidth(data.size.width);
