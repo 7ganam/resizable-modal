@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import DraggableResizable from "../components/DraggableResizable";
-import Link from "next/link";
+import Modal from "../components/Modal";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(true);
@@ -31,40 +30,15 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex items-start justify-center overflow-hidden  h-[100vh]">
-        <div className="w-1 h-1 ">
-          <DraggableResizable
-            windowPadding={40}
-            className={`bg-white rounded-md overflow-hidden ${
-              isOpen ? "block" : "hidden"
-            }`}
-          >
-            <div className="w-[100%] h-[100%] flex flex-col rounded-md overflow-hidden">
-              <div className="text-md font-bold ">
-                <div className="flex bg-blue-400">
-                  <div className="handle grow select-none truncate overflow-hidden whitespace-nowrap cursor-move text-black text-md p-1">
-                    This is a title
-                  </div>
-                  <button
-                    className="w-[30px] flex items-center justify-center cursor-pointer"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    ❌
-                  </button>
-                </div>
-              </div>
-              <div className="grow  overflow-hidden p-3">
-                <div className="grow-1 text-black">
-                  Radix UI has many advantages which do not provide by other
-                  libraries. You do not need to configure Radix UI with nextjs.
-                  You can install the Radix component based on your project
-                  requirement. You can choose tailwind.
-                </div>
-              </div>
-            </div>
-          </DraggableResizable>
-        </div>
-      </div>
+      <Modal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        title={"modal 1"}
+        initialHeight={100}
+        initialWidth={400}
+      >
+        <div className="p-5"> Automatically opened modal</div>
+      </Modal>
     </main>
   );
 }

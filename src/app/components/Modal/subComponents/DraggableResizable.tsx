@@ -8,10 +8,26 @@ export default function DraggableResizable({
   children,
   windowPadding = 40,
   className,
+  modalWidth,
+  setModalWidth,
+  modalHeight,
+  setModalHeight,
+  xPosition,
+  yPosition,
+  setXPosition,
+  setYPosition,
 }: Readonly<{
   children: React.ReactNode;
   windowPadding: number;
   className: string;
+  modalWidth: number;
+  setModalWidth: (width: number) => void;
+  modalHeight: number;
+  setModalHeight: (height: number) => void;
+  xPosition: number;
+  yPosition: number;
+  setXPosition: (x: number) => void;
+  setYPosition: (y: number) => void;
 }>) {
   // two hooks for calculating window's width and height
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -27,32 +43,26 @@ export default function DraggableResizable({
     };
   }, []);
 
-  // the x and y position of the top left corner of the modal
-  const [xPosition, setXPosition] = useState<number>(0);
-  const [yPosition, setYPosition] = useState<number>(0);
-
   const handleDrag = (e: DraggableEvent, data: DraggableData) => {
     setXPosition(data.x);
     setYPosition(data.y);
   };
 
-  const [modalWidth, setModalWidth] = useState<number>(200);
-  const [modalHeight, setModalHeight] = useState<number>(200);
-
   return (
     <Draggable
       bounds={{
         //stop the modal from being dragged out of the window
-        left: -windowWidth / 2 + windowPadding,
-        right: windowWidth / 2 - modalWidth - windowPadding,
+        left: windowPadding,
+        right: windowWidth - modalWidth - windowPadding,
         bottom: windowHeight - modalHeight - windowPadding,
         top: windowPadding,
       }}
       axis="both"
       handle=".handle"
       defaultPosition={{
-        x: -modalWidth / 2,
-        y: windowHeight / 2 - modalHeight / 2,
+        //add 1 to 10 random pixels to the x and y position to make new modals appear in different positions
+        x: windowWidth / 2 - modalWidth / 2 + Math.floor(Math.random() * 10),
+        y: windowHeight / 2 - modalHeight / 2 + Math.floor(Math.random() * 10),
       }}
       scale={1}
       onDrag={handleDrag}

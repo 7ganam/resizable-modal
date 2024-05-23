@@ -25,14 +25,13 @@ const Resizable = ({
   windowPadding: number;
   className: string;
 }) => {
-  const maxWidth = windowWidth / 2 - xPosition - windowPadding; //maxWidth used to prevent overflow when the modal is resized out of the window
+  const maxWidth = windowWidth - xPosition - windowPadding; //maxWidth used to prevent overflow when the modal is resized out of the window
 
   const handleResize = (
     event: React.SyntheticEvent,
     data: ResizeCallbackData
   ) => {
     if (data.size.width > maxWidth) {
-      console.log({ maxWidth, width });
       setWidth(maxWidth - 1); //snap the width back so the modal doesn't overflow
 
       setTimeout(() => {

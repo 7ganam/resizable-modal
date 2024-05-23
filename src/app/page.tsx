@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import DraggableResizable from "./components/DraggableResizable";
+import DraggableResizable from "./components/Modal/subComponents/DraggableResizable";
 import Link from "next/link";
+import Modal from "./components/Modal";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
 
   return (
     <main className="">
@@ -18,6 +20,14 @@ export default function Home() {
               }}
             >
               Open Modal
+            </button>
+            <button
+              className="m-5 p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+              onClick={() => {
+                setIsOpen2(true);
+              }}
+            >
+              Open Modal 2
             </button>
             <textarea
               id="w3review"
@@ -36,50 +46,30 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex items-start justify-center overflow-hidden  h-[100vh]">
-        <div className="w-1 h-1 ">
-          <DraggableResizable
-            windowPadding={40}
-            className={`bg-white rounded-md overflow-hidden ${
-              isOpen ? "block" : "hidden"
-            }`}
-          >
-            <div className="w-[100%] h-[100%] flex flex-col rounded-md overflow-hidden">
-              <div className="text-md font-bold ">
-                <div className="flex bg-blue-400">
-                  <div className="handle grow select-none truncate overflow-hidden whitespace-nowrap cursor-move text-black text-md p-1">
-                    This is a title
-                  </div>
-                  <button
-                    className="w-[30px] flex items-center justify-center cursor-pointer"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    ❌
-                  </button>
-                </div>
-              </div>
-              <div className="grow  overflow-hidden p-3">
-                <div className="grow-1 text-black">
-                  Radix UI has many advantages which do not provide by other
-                  libraries. You do not need to configure Radix UI with nextjs.
-                  You can install the Radix component based on your project
-                  requirement. You can choose tailwind,
-                </div>
-              </div>
-              <div className="p-3">
-                <div className="p-3 flex w-[100%] justify-end">
-                  <button
-                    className="px-4 py-2  text-white rounded bg-red-400 hover:bg-red-700"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </DraggableResizable>
+
+      <Modal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        title={"modal 1"}
+        initialHeight={400}
+        initialWidth={400}
+      />
+
+      <Modal
+        isOpen={isOpen2}
+        setIsOpen={setIsOpen2}
+        title={"modal 2"}
+        initialWidth={300}
+      >
+        <div className="grow overflow-hidden p-3">
+          <div className="grow-1 ">
+            Radix UI has many advantages which do not provide by other
+            libraries. You do not need to configure Radix UI with nextjs. You
+            can install the Radix component based on your project requirement.
+            You can choose tailwind.
+          </div>
         </div>
-      </div>
+      </Modal>
     </main>
   );
 }
