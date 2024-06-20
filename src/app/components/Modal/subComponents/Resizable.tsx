@@ -13,6 +13,7 @@ const Resizable = ({
   children,
   windowPadding,
   className,
+  aspectRatio,
 }: {
   width: number;
   setWidth: (width: number) => void;
@@ -24,6 +25,7 @@ const Resizable = ({
   children: React.ReactNode;
   windowPadding: number;
   className: string;
+  aspectRatio: number;
 }) => {
   const maxWidth = windowWidth - xPosition - windowPadding; //maxWidth used to prevent overflow when the modal is resized out of the window
 
@@ -45,7 +47,7 @@ const Resizable = ({
 
     //we can do the same for height to prevent the modal from being resized out of the window
     const _maxHeight = window.innerHeight - yPosition - windowPadding; // skipped for now.
-    setHeight(data.size.height);
+    setHeight(data.size.width / aspectRatio);
   };
 
   return (

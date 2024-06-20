@@ -17,6 +17,8 @@ export default function Modal({
   title?: string;
   children?: React.ReactNode;
 }>) {
+  const aspectRatio =
+    initialWidth && initialHeight ? initialWidth / initialHeight : 1.618;
   const [modalWidth, setModalWidth] = useState<number>(initialWidth ?? 200);
   const [modalHeight, setModalHeight] = useState<number>(initialHeight ?? 200);
 
@@ -39,6 +41,7 @@ export default function Modal({
         className={`bg-white rounded-md overflow-hidden ${
           isOpen ? "block" : "hidden"
         }`}
+        aspectRatio={aspectRatio}
       >
         <div className="w-[100%] h-[100%] flex flex-col rounded-md overflow-hidden">
           <div className="text-md font-bold ">

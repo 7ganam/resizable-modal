@@ -16,6 +16,7 @@ export default function DraggableResizable({
   yPosition,
   setXPosition,
   setYPosition,
+  aspectRatio,
 }: Readonly<{
   children: React.ReactNode;
   windowPadding: number;
@@ -28,6 +29,7 @@ export default function DraggableResizable({
   yPosition: number;
   setXPosition: (x: number) => void;
   setYPosition: (y: number) => void;
+  aspectRatio: number;
 }>) {
   // two hooks for calculating window's width and height
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -78,6 +80,7 @@ export default function DraggableResizable({
           windowWidth={windowWidth}
           windowPadding={windowPadding}
           className={className}
+          aspectRatio={aspectRatio}
         >
           {children}
         </Resizable>
